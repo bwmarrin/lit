@@ -35,7 +35,7 @@ var (
 	LogLevel int
 
 	// out is the output io.Writer where messages are wrote to.
-	out io.Writer
+	Writer io.Writer
 )
 
 // New returns a new *Logger struct with default options.
@@ -44,36 +44,37 @@ var (
 func init() {
 	Prefix = `LIT`
 	LogLevel = 0
-	out = os.Stderr
+	Writer = os.Stderr
 }
 
 // Error logs a Error level message
 func Error(format string, a ...interface{}) {
-	Log(ErrorLevel, 2, format, a...)
+	Log(Writer, ErrorLevel, 2, format, a...)
 }
 
 // Warn logs a Warning level message
 func Warn(format string, a ...interface{}) {
-	Log(WarningLevel, 2, format, a...)
+	Log(Writer, WarningLevel, 2, format, a...)
 }
 
 // Info logs a Informational level message
 func Info(format string, a ...interface{}) {
-	Log(InformationalLevel, 2, format, a...)
+	Log(Writer, InformationalLevel, 2, format, a...)
 }
 
 // Debug logs a Debug level message
 func Debug(format string, a ...interface{}) {
-	Log(DebugLevel, 2, format, a...)
+	Log(Writer, DebugLevel, 2, format, a...)
 }
 
 // Custom formats and writes the provided message to the defined io.Writer output
 // as long as the passed level is less than or equal to the Logger.LogLevel
+//   out       : io.Writer to output message to
 //   level     : Log Level of the message being logged.
 //   calldepth : Distance from the caller
 //   format    : Printf style message format
 //   a ...     : comma separated list of values to pass (like Printf)
-func Custom(level int, calldepth int, format string, a ...interface{}) {
+func Custom(out io.Writer, level int, calldepth int, format string, a ...interface{}) {
 
 	if level > LogLevel {
 		return
