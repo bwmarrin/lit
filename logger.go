@@ -14,17 +14,17 @@ const (
 
 	// For unrecoverable errors where you would be unable to continue to
 	// current scope of code.
-	ErrorLevel int = iota
+	LogError int = iota
 
 	// For non-critical errors that do not require you to abort/exit from the
 	// current scope of code.
-	WarningLevel
+	LogWarning
 
 	// For non-error "informational" logging.
-	InformationalLevel
+	LogInformational
 
 	// For any type of verbose debug specific logging.
-	DebugLevel
+	LogDebug
 )
 
 var (
@@ -67,13 +67,13 @@ func Debug(format string, a ...interface{}) {
 	Log(DebugLevel, 2, format, a...)
 }
 
-// Log formats and writes the provided message to the defined io.Writer output
+// Custom formats and writes the provided message to the defined io.Writer output
 // as long as the passed level is less than or equal to the Logger.LogLevel
 //   level     : Log Level of the message being logged.
 //   calldepth : Distance from the caller
 //   format    : Printf style message format
 //   a ...     : comma separated list of values to pass (like Printf)
-func Log(level int, calldepth int, format string, a ...interface{}) {
+func Custom(level int, calldepth int, format string, a ...interface{}) {
 
 	if level > LogLevel {
 		return
