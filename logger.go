@@ -12,7 +12,7 @@ import (
 // set the verbosity of logs to display.
 const (
 
-	// For unrecoverable errors where you would be unable to continue to
+	// For unrecoverable errors where you would be unable to continue the
 	// current scope of code.
 	LogError int = iota
 
@@ -34,13 +34,11 @@ var (
 	// LogLevel is the level of msgs to be logged.
 	LogLevel int
 
-	// out is the output io.Writer where messages are wrote to.
+	// Writer is the output io.Writer where messages are wrote to.
 	Writer io.Writer
 )
 
-// New returns a new *Logger struct with default options.
-// You can (eventually) set options using the various currently non-existant
-// option functions :)
+// Set package defaults
 func init() {
 	Prefix = `LIT`
 	LogLevel = 0
