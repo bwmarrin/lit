@@ -47,22 +47,22 @@ func init() {
 
 // Error logs a Error level message
 func Error(format string, a ...interface{}) {
-	Log(Writer, ErrorLevel, 2, format, a...)
+	Custom(Writer, LogError, 2, format, a...)
 }
 
 // Warn logs a Warning level message
 func Warn(format string, a ...interface{}) {
-	Log(Writer, WarningLevel, 2, format, a...)
+	Custom(Writer, LogWarning, 2, format, a...)
 }
 
 // Info logs a Informational level message
 func Info(format string, a ...interface{}) {
-	Log(Writer, InformationalLevel, 2, format, a...)
+	Custom(Writer, LogInformational, 2, format, a...)
 }
 
 // Debug logs a Debug level message
 func Debug(format string, a ...interface{}) {
-	Log(Writer, DebugLevel, 2, format, a...)
+	Custom(Writer, LogDebug, 2, format, a...)
 }
 
 // Custom formats and writes the provided message to the defined io.Writer output
