@@ -36,17 +36,20 @@ If it's an error, just add a line like
 lit.Error("message here, %s", err)
 ```
 
-Now that error message will be logged.  If it's something kind of spammy and not
+Now that error message will be logged.  
+
+If it's something kind of spammy and not
 even an error at all - just detail you need when debugging your application.
 
-There's also lit.Warning() and lit.Informational() methods that can be used 
-similarly.
 
 ```go
 lit.Debug("message here")
 ```
 
 Now that will be logged anytime your lit.LogLevel is set to LogDebug.
+
+There's also lit.Warning() and lit.Informational() methods that can be used 
+similarly.
 
 ## Options
 
