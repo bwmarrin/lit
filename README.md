@@ -48,20 +48,22 @@ even an error at all - just detail you need when debugging your application.
 lit.Debug("message here")
 ```
 
-Now that will be logged anytime your lit.LogLevel is set to LogDebug.
+Now that will be logged anytime your `lit.LogLevel` is set to `lit.LogDebug`.
 
-There's also lit.Warning() and lit.Informational() methods that can be used 
+There's also `lit.Warning()` and `lit.Informational()` methods that can be used 
 similarly.
 
 ## Options
 
 ### lit.LogLevel
-Can be set to LogError, LogWarning, LogInformational, and LogDebug.  The default 
-is LogError.
+Can be set to `lit.LogError`, `lit.LogWarning`, `lit.LogInformational`, and 
+`lit.LogDebug`.  The default is `lit.LogError`.
 
 ### lit.Prefix
-Can be set to any string you want to prefix all logged messages.
+Can be set to any string you want to prefix all logged messages. The default is 
+`LIT`.
 
 ### lit.Writer
-This can be set to any io.Writer and that's where your logged messages will go.
+This can be set to any io.Writer and that's where your logged messages will go. 
+The default is `os.Stderr`.
 
