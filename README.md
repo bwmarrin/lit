@@ -17,8 +17,7 @@ you feel would be a good fit for this package.
 
 ## Design Goals
 I find somethings, like logging, a bit tedious.  So I wanted a way to have a
-very accessible logger that I could use anywhere without needed much special 
-setup.  
+very accessible logger that I could use anywhere without needing much setup.  
 
 So, lit has minimal configuration options, it doesn't require to be instantiated
 as a variable you pass around, or a global one you setup somewhere.  You can just
@@ -34,11 +33,14 @@ Look around your code, and find a place that needs something logged.
 If it's an error, just add a line like
 
 ```go
-lit.Error("message here, %s", e rr)
+lit.Error("message here, %s", err)
 ```
 
 Now that error message will be logged.  If it's something kind of spammy and not
 even an error at all - just detail you need when debugging your application.
+
+There's also lit.Warning() and lit.Informational() methods that can be used 
+similarly.
 
 ```go
 lit.Debug("message here")
