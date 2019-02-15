@@ -6,6 +6,7 @@ import (
 	"os"
 	"runtime"
 	"strings"
+	"time"
 )
 
 // Error Levels that can be used to differentiate logged messages and also
@@ -78,6 +79,8 @@ func Custom(out io.Writer, level int, calldepth int, format string, a ...interfa
 		return
 	}
 
+	now := time.Now() // get this early.
+
 	pc, file, line, _ := runtime.Caller(calldepth)
 
 	files := strings.Split(file, "/")
@@ -89,5 +92,6 @@ func Custom(out io.Writer, level int, calldepth int, format string, a ...interfa
 
 	msg := fmt.Sprintf(format, a...)
 
-	fmt.Fprintf(out, "[%s%d] %s:%d:%s() %s\n", Prefix, level, file, line, name, msg)
+	fmt.Fprintf(out, "%s [%s%d] %s:%d:%s() %s\n", now.Format("2006-01-02 15:04:05"), Prefix, level, file, line, name, msg)
+
 }
