@@ -1,13 +1,12 @@
-
 package lit
 
 import (
+	"io/ioutil"
 	"testing"
-    "io/ioutil"
 )
 
 func init() {
-    Writer = ioutil.Discard
+	Writer = ioutil.Discard
 }
 
 func BenchmarkError(b *testing.B) {
@@ -36,7 +35,6 @@ func BenchmarkCustom(b *testing.B) {
 	b.ResetTimer()
 
 	for n := 0; n < b.N; n++ {
-		Debug("testing error")
-        Custom(Writer, LogLevel,0, "testing")
+		Custom(Writer, LogLevel, 0, "testing")
 	}
 }
