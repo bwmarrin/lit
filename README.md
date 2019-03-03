@@ -12,10 +12,10 @@ lit is a [Go](https://golang.org/) package that provides
 **For help with this package or general Go discussion, please join the [Discord 
 Gophers](https://discord.gg/0f1SbxBZjYq9jLBk) chat server.**
 
-## Status @ 2018-08-20
-This package is is the stage of figuring out what it wants to be. It may change
-wildly or stay mostly the same.  I am definitely open to input on any changes 
-you feel would be a good fit for this package.
+## Status @ 2019-03-02
+This package is pretty much where it's going to be, there's a chance of some
+minor changes in the future but otherwise I expect it to remain about like it is
+now.
 
 ## Design Goals
 I find somethings, like logging, a bit tedious.  So I wanted a way to have a
