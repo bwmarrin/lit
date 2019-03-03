@@ -48,21 +48,33 @@ func init() {
 
 // Error logs a Error level message
 func Error(format string, a ...interface{}) {
+	if LogError > LogLevel {
+		return
+	}
 	Custom(Writer, LogError, 2, format, a...)
 }
 
 // Warn logs a Warning level message
 func Warn(format string, a ...interface{}) {
+	if LogWarning > LogLevel {
+		return
+	}
 	Custom(Writer, LogWarning, 2, format, a...)
 }
 
 // Info logs a Informational level message
 func Info(format string, a ...interface{}) {
+	if LogInformational > LogLevel {
+		return
+	}
 	Custom(Writer, LogInformational, 2, format, a...)
 }
 
 // Debug logs a Debug level message
 func Debug(format string, a ...interface{}) {
+	if LogDebug > LogLevel {
+		return
+	}
 	Custom(Writer, LogDebug, 2, format, a...)
 }
 
