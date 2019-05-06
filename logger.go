@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"runtime"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -30,19 +31,16 @@ const (
 
 var (
 	// ErrorPrefix is the custom prefix for errors
-	ErrorPrefix string
+	PrefixError string
 
 	// WarningPrefix is the custom prefix for warnings
-	WarningPrefix string
+	PrefixWarning string
 
 	// InformationalPrefix is the custom prefix for informational messages
-	InformationalPrefix string
+	PrefixInformational string
 
 	// DebugPrefix is the custom prefix for debug messages
-	DebugPrefix string
-
-	// CustomPrefix enables or disables the use of custom prefixes
-	CustomPrefix bool
+	PrefixDebug string
 
 	// Prefix is a string that is added to the start of any logged messages.
 	Prefix string
@@ -52,9 +50,6 @@ var (
 
 	// Writer is the output io.Writer where messages are wrote to.
 	Writer io.Writer
-
-	// getPrefix returns the relevant prefix based off settings and log level
-	getPrefix func(level int) string
 )
 
 // Set package defaults
@@ -62,18 +57,22 @@ func init() {
 	Prefix = `LIT`
 	LogLevel = 0
 	Writer = os.Stderr
-	getPrefix = func(level int) string {
-		if !CustomPrefix {
-			return fmt.Sprintf("%s%d", Prefix, level)
-		} else if level == LogError {
-			return ErrorPrefix
-		} else if level == LogWarning {
-			return WarningPrefix
-		} else if level == LogInformational {
-			return InformationalPrefix
-		} else {
-			return DebugPrefix
-		}
+
+	PrefixError = strconv.Itoa(LogError)
+	PrefixDebug = strconv.Itoa(LogDebug)
+	PrefixWarning = strconv.Itoa(LogWarning)
+	PrefixInformational = strconv.Itoa(LogInformational)
+}
+
+func getPrefix(level int) string {
+	if level == LogError {
+		return PrefixError
+	} else if level == LogWarning {
+		return PrefixWarning
+	} else if level == LogInformational {
+		return PrefixInformational
+	} else {
+		return PrefixDebug
 	}
 }
 
@@ -135,6 +134,6 @@ func Custom(out io.Writer, level int, calldepth int, format string, a ...interfa
 
 	msg := fmt.Sprintf(format, a...)
 
-	fmt.Fprintf(out, "%s [%s] %s:%d:%s() %s\n", now.Format("2006-01-02 15:04:05"), getPrefix(level), file, line, name, msg)
+	fmt.Fprintf(out, "%s [%s%s] %s:%d:%s() %s\n", now.Format("2006-01-02 15:04:05"), Prefix, getPrefix(level), file, line, name, msg)
 
 }
