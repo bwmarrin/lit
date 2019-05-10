@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"runtime"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -29,6 +30,18 @@ const (
 )
 
 var (
+	// ErrorPrefix is the custom prefix for errors
+	PrefixError string
+
+	// WarningPrefix is the custom prefix for warnings
+	PrefixWarning string
+
+	// InformationalPrefix is the custom prefix for informational messages
+	PrefixInformational string
+
+	// DebugPrefix is the custom prefix for debug messages
+	PrefixDebug string
+
 	// Prefix is a string that is added to the start of any logged messages.
 	Prefix string
 
@@ -44,6 +57,23 @@ func init() {
 	Prefix = `LIT`
 	LogLevel = 0
 	Writer = os.Stderr
+
+	PrefixError = strconv.Itoa(LogError)
+	PrefixDebug = strconv.Itoa(LogDebug)
+	PrefixWarning = strconv.Itoa(LogWarning)
+	PrefixInformational = strconv.Itoa(LogInformational)
+}
+
+func getPrefix(level int) string {
+	if level == LogError {
+		return PrefixError
+	} else if level == LogWarning {
+		return PrefixWarning
+	} else if level == LogInformational {
+		return PrefixInformational
+	} else {
+		return PrefixDebug
+	}
 }
 
 // Error logs a Error level message
@@ -104,6 +134,6 @@ func Custom(out io.Writer, level int, calldepth int, format string, a ...interfa
 
 	msg := fmt.Sprintf(format, a...)
 
-	fmt.Fprintf(out, "%s [%s%d] %s:%d:%s() %s\n", now.Format("2006-01-02 15:04:05"), Prefix, level, file, line, name, msg)
+	fmt.Fprintf(out, "%s [%s%s] %s:%d:%s() %s\n", now.Format("2006-01-02 15:04:05"), Prefix, getPrefix(level), file, line, name, msg)
 
 }
