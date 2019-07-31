@@ -1,4 +1,4 @@
-`lit` logs, so easy.
+`lit` logs, so hot.
 ====
 [![GoDoc](https://godoc.org/github.com/bwmarrin/lit?status.svg)](https://godoc.org/github.com/bwmarrin/lit) [![Go report](http://goreportcard.com/badge/bwmarrin/lit)](http://goreportcard.com/report/bwmarrin/lit) [![Build Status](https://travis-ci.org/bwmarrin/lit.svg?branch=master)](https://travis-ci.org/bwmarrin/lit) [![Discord Gophers](https://img.shields.io/badge/Discord%20Gophers-%23info-blue.svg)](https://discord.gg/0f1SbxBZjYq9jLBk)
 
