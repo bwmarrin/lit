@@ -30,16 +30,16 @@ const (
 )
 
 var (
-	// ErrorPrefix is the custom prefix for errors
+	// PrefixError is the custom prefix for errors
 	PrefixError string
 
-	// WarningPrefix is the custom prefix for warnings
+	// PrefixWarning is the custom prefix for warnings
 	PrefixWarning string
 
-	// InformationalPrefix is the custom prefix for informational messages
+	// PrefixInformational is the custom prefix for informational messages
 	PrefixInformational string
 
-	// DebugPrefix is the custom prefix for debug messages
+	// PrefixDebug is the custom prefix for debug messages
 	PrefixDebug string
 
 	// Prefix is a string that is added to the start of any logged messages.
